@@ -3,9 +3,18 @@ class Account {
 
   constructor(username) {
     this.username = username;
+    this.transactions = [];
+  }
 
-    // Have the account balance start at $0 since that makes more sense
-    this.balance = 0;
+  get balance() {
+    let balance = 0;
+    for (let perTransaction of this.transactions) {
+      this.balance += perTransaction;
+    }
+  }
+
+  addTransaction(transaction) {
+    this.transactions.push(transaction);
   }
 }
 
@@ -18,7 +27,9 @@ class Transaction {
   }
 
   commit() {
-    this.account.balance += this.value;
+    // Tracks the time of transactions
+    this.time = new Date();
+    this.account.addTransaction(this);
   }
 }
 
