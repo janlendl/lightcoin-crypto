@@ -1,28 +1,5 @@
 let balance = 500.00;
 
-class Withdrawal {
-
-  constructor(amount) {
-    this.amount = amount;
-  }
-
-  commit() {
-    balance -= this.amount;
-  }
-
-}
-
-class Deposit {
-
-  constructor(amount) {
-    this.amount = amount;
-  }
-
-  commit() {
-    balance += this.amount;
-  }
-}
-
 class Account {
 
   constructor(username) {
@@ -32,6 +9,33 @@ class Account {
     this.balance = 0;
   }
 }
+
+class Withdrawal {
+
+  constructor(amount, account) {
+    this.amount = amount;
+    this.account = account;
+  }
+
+  commit() {
+    this.account.balance -= this.amount;
+  }
+
+}
+
+class Deposit {
+
+  constructor(amount, account) {
+    this.amount = amount;
+    this.account = account;
+  }
+
+  commit() {
+    this.account.balance += this.amount;
+  }
+}
+
+
 
 
 
